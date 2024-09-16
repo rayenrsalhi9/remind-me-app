@@ -32,7 +32,7 @@
 
         <div class="body">
             <div class="body-left-section">
-                <form action="GET">
+                <form action="">
                     <div class="initial-budget-input">
                         <label for="initial-budget">
                             Initial budget :
@@ -50,8 +50,40 @@
                 </form>
             </div>
             <div class="body-right-section">
+
                 <img src="/images/spending/empty-cart-image.jpg" alt="empty cart image">
-                <p>Your purchased items will be displayed here.</p>
+                <p class="alert">Your purchased items will be displayed here.</p>
+
+                <div class="initial-budget-cart">
+                    <p class="name">Iinitial budget : </p>
+                    <p class="price">150 TND</p>
+                </div>
+
+                <div class="product">
+                    <p class="name">1 kg sardines</p>
+                    <p class="price">20 TND</p>
+                    <button class="remove-item">Remove</button>
+                </div>
+                <div class="product">
+                    <p class="name">2 kg potatoes</p>
+                    <p class="price">16 TND</p>
+                    <button class="remove-item">Remove</button>
+                </div>
+                
+
+                <div class="total">
+                    <p class="name">Total purchased : </p>
+                    <p class="price">36 TND</p>
+                </div>
+                <div class="remaining-budget">
+                    <p class="name">Remaining budget : </p>
+                    <p class="price">114 TND</p> 
+                </div>
+
+                <div class="buttons">
+                    <button class="archive-order">Archive order</button>
+                    <button class="reset-order">Reset order</button>
+                </div>
             </div>
         </div>
     </div>
