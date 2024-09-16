@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>remindMe</title>
+    <title>Track spending</title>
 
     <link rel="icon" href="./images/general/website-icon.png">
 
-    <link rel="stylesheet" href="./styles/pages/landing.css">
+    <link rel="stylesheet" href="./styles/pages/spending.css">
 
     <link rel="stylesheet" href="./styles/shared/general.css">
     <link rel="stylesheet" href="./styles/shared/responsive.css">
@@ -29,23 +29,33 @@
                 </div>
             </div>
         </header>
-        <div class="landing">
-            <div class="landing-left-section">
-                <h1 class="main-title">Stay organized, stay ahead.</h1>
-                <p class="description">
-                    Discover remindMe, the application allowing you to <b>track</b> your spending as a student, <b>note</b> your thoughts, <b>list</b> your to-do's and <b>calculate</b> your grades. All in one place.
-                </p>
-                <div class="buttons-section">
-                    <a href="menu.html">Use app</a>
-                    <a href="#">About this app.</a>
-                </div>
+
+        <div class="body">
+            <div class="body-left-section">
+                <form action="GET">
+                    <div class="initial-budget-input">
+                        <label for="initial-budget">
+                            Initial budget :
+                            <input type="text" placeholder="Your initial budget to start purchasing from" id="initial-budget" maxlength="20">
+                        </label>
+                        <button class="confirm-budget-button">Confirm Budget</button>
+                    </div>
+                    <div class="add-product-input">
+                        <label for="product">
+                            Purchased product price :
+                            <input type="text" id="product" placeholder="Price will be in your current currency">
+                        </label>
+                        <button class="add-product-button">Add product</button>
+                    </div>
+                </form>
             </div>
-            <div class="landing-right-section">
-                <img src="./images/landing/landing-image.png" alt="landing page image">
+            <div class="body-right-section">
+                <img src="/images/spending/empty-cart-image.jpg" alt="empty cart image">
+                <p>Your purchased items will be displayed here.</p>
             </div>
         </div>
     </div>
 
-    <script src="./scripts/index.js" type="module"></script>
+    <script src="./scripts/spending.js" type="module"></script>
 </body>
 </html>
