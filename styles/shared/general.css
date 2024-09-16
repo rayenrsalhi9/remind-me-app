@@ -1,12 +1,103 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
+:root {
+    --logo-right-side: #fca311;
+
+    --light-color: #fafafa;
+    --dark-color: #111111;
+}
+
 body {
     font-family: 'Inter', sans-serif;
+
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+
+    background: var(--light-color);
 }
 
-button, input, select {
+button, input, select, a {
     font-family: 'Inter', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: var(--light-color);
+    cursor: pointer;
+}
+
+.website-header {
+
+    background: var(--dark-color);
+    height: 70px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    padding: 0 15px;
+    border-radius: 0px 0px 6px 6px;
+    box-shadow: 2px 2px 8px #111111;
+}
+
+.website-logo {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.website-logo .right-side {
+    color: var(--logo-right-side);
+}
+.website-logo .left-side {
+    color: var(--light-color);
+}
+
+.website-logo.small {
+    display: none;
+}
+
+@media(max-width: 767px) {
+    .website-logo.small {
+        display: block;
+    }
+    .website-logo {
+        display: none;
+    }
+}
+
+.right-section .dark-mode-container {
+    width: 60px;
+    height: 10px;
+
+    border-radius: 50px;
+    border: 2px solid var(--light-color);
+
+    position: relative;
+    transition: 1s;
+}
+
+.right-section .dark-mode-container svg {
+    color: #111111;
+    background: var(--light-color);
+
+    padding: 5px;
+    border-radius: 50%;
+
+    position: absolute;
+    left: -10px;
+    top: -10px;
+
+    transition: .5s;
+    cursor: pointer;
+}
+
+.dark-mode-container.clicked {
+    background: var(--logo-right-side);
+}
+
+.dark-mode-container svg.clicked {
+    color: var(--logo-right-side);
+    transform: translateX(45px) rotate(360deg);
 }
