@@ -10,7 +10,7 @@ export function renderCartProducts() {
                 <div class="product">
                     <p class="name">${item.name}</p>
                     <p class="price">${dinarFormat(item.price)}</p>
-                    <button class="remove-item">Remove</button>
+                    <button class="remove-item" data-id="${item.id}">Remove</button>
                 </div>
         `
     });
