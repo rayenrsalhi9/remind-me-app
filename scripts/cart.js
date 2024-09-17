@@ -3,30 +3,28 @@ import { dinarFormat } from "./utils/dinarFormat.js";
 export let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 export function renderCartProducts() {
-    const productsArea = document.querySelector('.products-area');
     let productsHtml = '';
 
     cart.forEach(item => {
         productsHtml += `
                 <div class="product">
                     <p class="name">${item.name}</p>
-                    <p class="price">${dinarFormat(item.price)} TND</p>
+                    <p class="price">${dinarFormat(item.price)}</p>
                     <button class="remove-item">Remove</button>
                 </div>
         `
     });
 
-    productsArea.innerHTML = productsHtml;
+    return productsHtml;
 }
 
-export function renderCart(initialBudget) {
-
+export function renderCart(initialBudget, renderCartProducts) {
     const cartArea = document.querySelector('.cart-area');
     let cartHtml = '';
 
     let total = 0;
     cart.forEach(item => {
-        total += item.price;
+        total += Number(item.price);
     });
 
     const remainingBudget = initialBudget - total;
@@ -37,7 +35,9 @@ export function renderCart(initialBudget) {
             <p class="price">${dinarFormat(initialBudget)}</p>
         </div>
 
-        <div class="products-area"></div>
+        <div class="products-area">
+            ${renderCartProducts()}
+        </div>
         
         <div class="total">
             <p class="name">Total purchased : </p>

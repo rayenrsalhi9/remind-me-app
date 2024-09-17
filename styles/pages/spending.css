@@ -60,7 +60,7 @@ label input {
 }
 
 form a {
-    height: 20px;
+    height: 25px;
 
     border: 2px solid var(--dark-color);
     border-radius: 4px;
@@ -70,9 +70,12 @@ form a {
     
     font-weight: 600;
     font-size: 14px;
-    text-align: center;
 
     cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 form a:hover {
@@ -108,7 +111,8 @@ form a:hover {
     display: none;
 }
 
-.cart-area {
+.cart-area,
+.products-area {
     width: 100%;
     display: flex;
     align-items: center;
