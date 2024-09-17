@@ -5,6 +5,10 @@
     --secondary-color: #ed9a16;
 }
 
+.container {
+    margin-bottom: 50px;
+}
+
 .body {
     margin-top: 100px;
     display: grid;
@@ -55,17 +59,29 @@ label input {
     box-sizing: border-box;
 }
 
-form button {
-    height: 30px;
+form a {
+    height: 20px;
+
     border: 2px solid var(--dark-color);
     border-radius: 4px;
+
     background: var(--secondary-color);
     color: var(--dark-color);
+    
     font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+
     cursor: pointer;
 }
 
+form a:hover {
+    background: #ff9d00;
+}
+
 .body-right-section {
+
+    height: fit-content;
 
     border: 2px solid var(--dark-color);
     border-radius: 6px;
@@ -75,6 +91,7 @@ form button {
 
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     gap: 5px;
 }
@@ -89,6 +106,14 @@ form button {
     color: var(--dark-color);
     font-size: 18px;
     display: none;
+}
+
+.cart-area {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .product, 
@@ -136,6 +161,10 @@ form button {
     cursor: pointer;
 }
 
+.remove-item:hover {
+    background: #ff9d00;
+}
+
 .initial-budget-cart {
     background: #696969;
     margin-bottom: 20px;
@@ -154,6 +183,7 @@ form button {
 }
 
 .buttons {
+    margin-top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -164,10 +194,27 @@ form button {
     height: 30px;
     cursor: pointer;
     border-radius: 2px;
-    border: 1px solid var(--dark-color);
 }
 
 .reset-order {
     color: #fafafa;
     background: rgb(229, 13, 1);
+    border: 2px solid rgb(229, 13, 1);
+}
+
+.reset-order:hover {
+    color: rgb(229, 13, 1);
+    background: none;
+}
+
+.archive-order {
+    color: var(--light-color);
+    border: 2px solid var(--dark-color);
+    background: var(--dark-color);
+}
+
+.archive-order:hover {
+    color: var(--dark-color);
+    border: 2px solid var(--dark-color);
+    background: var(--light-color);
 }
