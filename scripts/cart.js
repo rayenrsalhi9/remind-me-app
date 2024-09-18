@@ -56,3 +56,17 @@ export function renderCart(initialBudget, renderCartProducts) {
 
     cartArea.innerHTML = cartHtml;
 }
+
+export function saveCartToStorage() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+export function removeFromCart(matchingItem) {
+    let newCart = [];
+    cart.forEach(item => {
+        if (item.id !== matchingItem.id) newCart.push(item);
+    });
+    cart = newCart;
+    saveCartToStorage();
+
+};   
