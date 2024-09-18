@@ -1,6 +1,6 @@
-import { handleDarkMode } from './utils/darkMode.js';
-import { cart, renderCart, renderCartProducts, saveCartToStorage, removeFromCart } from './cart.js';
-import { randomId } from './utils/randomId.js';
+import { handleDarkMode } from '../utils/darkMode.js';
+import { cart, renderCart, renderCartProducts, saveCartToStorage, removeFromCart } from '../utils/cart.js';
+import { randomId } from '../utils/randomId.js';
 
 let initialBudget = Number(localStorage.getItem('initial-budget')) || 0;
 renderCart(initialBudget, renderCartProducts);

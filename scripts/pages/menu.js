@@ -1,4 +1,4 @@
-import {handleDarkMode} from './utils/darkMode.js';
+import {handleDarkMode} from '../utils/darkMode.js';
 
 handleDarkMode();
 

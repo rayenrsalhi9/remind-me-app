@@ -1,4 +1,4 @@
-import { dinarFormat } from "./utils/dinarFormat.js";
+import { dinarFormat } from "../utils/dinarFormat.js";
 
 export let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
