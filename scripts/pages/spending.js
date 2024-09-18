@@ -1,10 +1,9 @@
 import { handleDarkMode } from '../utils/darkMode.js';
-import { cart, renderCart, renderCartProducts, saveCartToStorage, removeFromCart } from '../utils/cart.js';
+import { cart, generateCartFunction } from '../utils/cart.js';
 import { randomId } from '../utils/randomId.js';
 
-let initialBudget = Number(localStorage.getItem('initial-budget')) || 0;
-renderCart(initialBudget, renderCartProducts);
-handleDeleteProduct();
+let initialBudget = Number(localStorage.getItem('budget')) || 0;
+generateCartFunction(initialBudget);
 
 handleDarkMode();
 handleAddInitialBudget();
@@ -20,9 +19,8 @@ function handleAddInitialBudget() {
         } 
         else {
             initialBudget = Number(addProductArea.value)
-            localStorage.setItem('initial-budget', JSON.stringify(initialBudget));
-            renderCart(initialBudget, renderCartProducts);
-            handleDeleteProduct();
+            localStorage.setItem('budget', JSON.stringify(initialBudget));
+            generateCartFunction(initialBudget)
             addProductArea.value = '';
         }   
     });
@@ -47,33 +45,12 @@ function handleAddProduct() {
                 price: `${productPriceInput.value}`,
                 id: `${randomId()}`
             });
-            saveCartToStorage();
-            renderCart(initialBudget, renderCartProducts);
-            handleDeleteProduct();
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            generateCartFunction(initialBudget);
 
             productNameInput.value = '';
             productPriceInput.value = '';
         }
     })
-}
-
-function handleDeleteProduct() {
-    const removeButtons = document.querySelectorAll('.remove-item');
-    removeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            let matchingItem = findMatchingCartItem(button);
-            removeFromCart(matchingItem);
-            renderCart(initialBudget, renderCartProducts)
-            handleDeleteProduct();
-        });    
-    });
-}
-
-function findMatchingCartItem(button) {
-    let match;
-    let productId = button.dataset.id;
-    cart.forEach(item => {
-        if (item.id === productId) match = item;
-    });
-    return match;
 }
