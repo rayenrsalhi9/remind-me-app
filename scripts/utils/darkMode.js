@@ -1,6 +1,6 @@
 export function handleDarkMode() {
     const iconContainer = document.querySelector('.dark-mode-container');
-    const icon = document.querySelector('svg');
+    const icon = document.querySelector('svg.icon');
 
     icon.addEventListener('click', () => {
 
