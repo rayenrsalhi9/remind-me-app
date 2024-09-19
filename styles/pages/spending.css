@@ -99,18 +99,6 @@ form a:hover {
     gap: 5px;
 }
 
-.body-right-section img {
-    width: 300px;
-    border-radius: 50%;
-    display: none;
-}
-
-.body-right-section p.alert {
-    color: var(--dark-color);
-    font-size: 18px;
-    display: none;
-}
-
 .cart-area,
 .products-area {
     width: 100%;
@@ -171,12 +159,12 @@ form a:hover {
 
 .initial-budget-cart {
     background: #696969;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: var(--dark-color);
 }
 
 .total {
-    margin-top: 20px;
+    margin-top: 10px;
     background: #696969;
     color: var(--dark-color);
 }
