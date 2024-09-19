@@ -32,7 +32,7 @@ export function generateCartFunction(budget) {
             total += Number(item.price);
         });
 
-        const remainingBudget = budget - total;
+        let remainingBudget = budget - total;
 
         cartHtml += `
             <div class="initial-budget-cart">
@@ -63,7 +63,7 @@ export function generateCartFunction(budget) {
 
         handleDeleteProduct();
         handleReset();
-        handleArchiveOrder();
+        handleArchiveOrder(total, remainingBudget);
     }
 
     function removeFromCart(matchingItem) {
@@ -109,7 +109,7 @@ export function generateCartFunction(budget) {
         });
     }
 
-    function handleArchiveOrder() {
+    function handleArchiveOrder(total, remainingBudget) {
         const archiveButton = document.querySelector('.archive-order');
         archiveButton.addEventListener('click', (e) => {
 
@@ -117,7 +117,12 @@ export function generateCartFunction(budget) {
             else {
                 history.push({
                     purchaseId: randomId(),
-                    budget: budget,
+                    purchaseDate: dayjs().format('MMMM D, YYYY  HH:mm'),
+
+                    budget,
+                    total,
+                    remainingBudget,
+
                     products: cart
                 });
                 saveHistory();
