@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do list</title>
+
+    <link rel="stylesheet" href="./styles/shared/general.css">
+    <link rel="stylesheet" href="./styles/shared/responsive.css">
+
+    <link rel="stylesheet" href="./styles/pages/to-do.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <header class="website-header">
+            <div class="left-section">
+                <a href="index.html" class="website-logo">
+                    <span class="left-side">remind<span class="right-side">Me</span></span>   
+                </a>
+                <a href="index.html" class="website-logo small">
+                    <span class="left-side">R<span class="right-side">M</span></span>   
+                </a>
+            </div>       
+            <div class="right-section">
+                <div class="dark-mode-container">
+                    <svg xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-moon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 1.992a10 10 0 1 0 9.236 13.838c.341 -.82 -.476 -1.644 -1.298 -1.31a6.5 6.5 0 0 1 -6.864 -10.787l.077 -.08c.551 -.63 .113 -1.653 -.758 -1.653h-.266l-.068 -.006l-.06 -.002z"/></svg>
+                </div>
+
+                <div class="home-icon-container">
+                    <a href="menu.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" class="home-icon"><path fill="#000000" d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1" style="fill: rgb(252, 163, 17);"></path></svg>Menu
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <div class="website-body">
+            <h2 class="title">Your tasks: </h2>
+            
+            <div class="new-task-area">
+                <h3>Add new task</h3>
+                <form action="">
+                    <label for="task-name">
+                        Task title:
+                        <input type="text" id="task-name" placeholder="Enter task name">
+                    </label>
+                    <label for="task-description">
+                        Task description:
+                        <input type="text" id="task-description" placeholder="Describe brievly what is it about">
+                    </label>
+                    <label for="task-date">
+                        Task estimated date:
+                        <input type="date" name="task-date" id="task-date">
+                    </label>
+                    <a class="add-task-button">Add task</a>
+                </form>
+            </div>
+
+            <ul class="navigation">
+                <li class="selected">All <span>(3)</span></li>
+                <li>Pending <span>(2)</span></li>
+                <li>Done <span>(1)</span></li>
+            </ul>
+
+            <div class="tasks-area">  
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+    <script type="module" src="./scripts/pages/to-do.js"></script>
+</body>
+</html>
