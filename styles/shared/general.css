@@ -71,21 +71,29 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 15px;
 }
 
-.right-section .home-icon-container {
+.right-section .home-icon-container,
+.right-section .see-history-container {
+    width: 65px;
+}
+
+.right-section .home-icon-container a,
+.right-section .see-history-container a {
     display: flex;
     flex-direction: column;
-    color: var(--light-color);
     justify-content: center;
     align-items: center;
-    font-size: 12px;
     gap: 2px;
-    margin-right: 10px;
+
+    color: var(--light-color);
+    font-size: 12px;
+    text-align: center;
 }
 
-.right-section .home-icon-container svg.home-icon {
+.right-section .home-icon-container svg.home-icon,
+.right-section .see-history-container svg {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,6 +102,11 @@ a {
     height: 35px;
 
     cursor: pointer;
+}
+
+.right-section .home-icon-container:hover,
+.right-section .see-history-container:hover {
+    border: 1px solid var(--light-color);
 }
 
 .right-section .dark-mode-container {
