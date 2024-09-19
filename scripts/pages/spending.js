@@ -2,8 +2,8 @@ import { handleDarkMode } from '../utils/darkMode.js';
 import { cart, generateCartFunction } from '../utils/cart.js';
 import { randomId } from '../utils/randomId.js';
 
-let initialBudget = Number(localStorage.getItem('budget')) || 0;
-generateCartFunction(initialBudget);
+let budget = Number(localStorage.getItem('budget')) || 0;
+generateCartFunction(budget);
 
 handleDarkMode();
 handleAddInitialBudget();
@@ -18,9 +18,9 @@ function handleAddInitialBudget() {
             e.preventDefault();
         } 
         else {
-            initialBudget = Number(addProductArea.value)
-            localStorage.setItem('budget', JSON.stringify(initialBudget));
-            generateCartFunction(initialBudget)
+            budget = Number(addProductArea.value)
+            localStorage.setItem('budget', JSON.stringify(budget));
+            generateCartFunction(budget)
             addProductArea.value = '';
         }   
     });
@@ -47,7 +47,7 @@ function handleAddProduct() {
             });
             
             localStorage.setItem('cart', JSON.stringify(cart));
-            generateCartFunction(initialBudget);
+            generateCartFunction(budget);
 
             productNameInput.value = '';
             productPriceInput.value = '';

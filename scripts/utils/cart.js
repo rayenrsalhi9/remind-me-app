@@ -1,11 +1,11 @@
 import { dinarFormat } from "../utils/dinarFormat.js";
-
+import { history, saveHistory } from "./history.js";
+import { randomId } from "./randomId.js";
 
 export let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-export function generateCartFunction(initialBudget) {
-    renderCart(initialBudget, renderCartProducts);
-    handleReset();
+export function generateCartFunction(budget) {
+    renderCart(budget, renderCartProducts);
 
     function renderCartProducts() {
         let productsHtml = '';
@@ -23,7 +23,7 @@ export function generateCartFunction(initialBudget) {
         return productsHtml;
     }
 
-    function renderCart(initialBudget, renderCartProducts) {
+    function renderCart(budget, renderCartProducts) {
         const cartArea = document.querySelector('.cart-area');
         let cartHtml = '';
 
@@ -32,12 +32,12 @@ export function generateCartFunction(initialBudget) {
             total += Number(item.price);
         });
 
-        const remainingBudget = initialBudget - total;
+        const remainingBudget = budget - total;
 
         cartHtml += `
             <div class="initial-budget-cart">
                 <p class="name">Iinitial budget : </p>
-                <p class="price">${dinarFormat(initialBudget)}</p>
+                <p class="price">${dinarFormat(budget)}</p>
             </div>
 
             <div class="products-area">
@@ -62,6 +62,8 @@ export function generateCartFunction(initialBudget) {
         cartArea.innerHTML = cartHtml;
 
         handleDeleteProduct();
+        handleReset();
+        handleArchiveOrder();
     }
 
     function removeFromCart(matchingItem) {
@@ -79,7 +81,7 @@ export function generateCartFunction(initialBudget) {
             button.addEventListener('click', () => {
                 let matchingItem = findMatchingCartItem(button);
                 removeFromCart(matchingItem);
-                generateCartFunction(initialBudget);
+                generateCartFunction(budget);
             });    
         });
     }
@@ -99,11 +101,34 @@ export function generateCartFunction(initialBudget) {
         resetButton.addEventListener('click', () => {
 
             cart = [];
-            initialBudget = 0;
+            budget = 0;
             
             localStorage.removeItem('budget');
             localStorage.removeItem('cart');
-            generateCartFunction(initialBudget);
+            generateCartFunction(budget);
+        });
+    }
+
+    function handleArchiveOrder() {
+        const archiveButton = document.querySelector('.archive-order');
+        archiveButton.addEventListener('click', (e) => {
+
+            if (cart.length === 0 || budget === 0) e.preventDefault()
+            else {
+                history.push({
+                    purchaseId: randomId(),
+                    budget: budget,
+                    products: cart
+                });
+                saveHistory();
+    
+                cart = [];
+                budget = 0; 
+                localStorage.removeItem('budget');
+                localStorage.removeItem('cart');
+                
+                generateCartFunction(budget);
+            }
         });
     }
 }   
