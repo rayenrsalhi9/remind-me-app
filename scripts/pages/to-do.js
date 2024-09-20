@@ -2,12 +2,12 @@ import { handleDarkMode } from '../utils/darkMode.js';
 import { tasks, renderTasks } from '../utils/tasks.js';
 import { randomId } from '../utils/randomId.js';
 
-renderTasks();
+handleSelectedLi();
 displayTasksNumber();
 handleDarkMode();
 
 handleNewTask();
-handleSelectedLi();
+
 
 
 function handleNewTask() {
@@ -33,7 +33,7 @@ function handleNewTask() {
             });
 
             localStorage.setItem('tasks', JSON.stringify(tasks));
-            renderTasks();
+            handleSelectedLi();
             displayTasksNumber();
 
             taskNameInput.value = '';
@@ -43,15 +43,30 @@ function handleNewTask() {
     });
 }
 
-function handleSelectedLi() {
-    const lis = document.querySelectorAll('ul.navigation li');
+export function handleSelectedLi() {
+    
+    let pending = [];
+    let done = [];
+
+    tasks.forEach(task => {
+        if (task.done === false) pending.push(task);
+        else done.push(task);
+    });
 
     let status = localStorage.getItem('status') ||'all';
+    if (status === 'all') renderTasks(tasks);
+    else if (status === 'pending') renderTasks(pending);
+    else renderTasks(done);
+
+    // select appropriate navigation :
+    const lis = document.querySelectorAll('ul.navigation li');
     lis.forEach(li => {
-        if (li.dataset.status === status) li.classList.add('selected');
+        const taskStatus = li.dataset.status;
+        if (taskStatus === status) li.classList.add('selected');    
     });
 
     lis.forEach(li => {
+        const taskStatus = li.dataset.status;
         li.addEventListener('click', () => {
             lis.forEach(item => {
                 item.classList.remove('selected');
@@ -59,6 +74,10 @@ function handleSelectedLi() {
             li.classList.add('selected');
             status = li.dataset.status;
             localStorage.setItem('status', status);
+
+            if (taskStatus === 'all') renderTasks(tasks);
+            else if (taskStatus === 'pending') renderTasks(pending);
+            else renderTasks(done);
         });
     })
 }

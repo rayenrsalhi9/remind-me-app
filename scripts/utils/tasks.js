@@ -1,19 +1,19 @@
-import { displayTasksNumber } from "../pages/to-do.js";
+import { displayTasksNumber, handleSelectedLi } from "../pages/to-do.js";
 
 export let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-export function renderTasks() {
+export function renderTasks(selectedTask) {
 
-    renderTasksGrid();
+    renderTasksGrid(selectedTask);
     checkDoneTasks();
     handleDone();
     handleRemove();
     
-    function renderTasksGrid() {
+    function renderTasksGrid(selectedTask) {
         const tasksgrid = document.querySelector('.tasks-area');
         let tasksHtml = '';
 
-        tasks.forEach(task => {
+        selectedTask.forEach(task => {
             tasksHtml += `
                 <div class="task">
                     <div class="top-section">
@@ -51,9 +51,6 @@ export function renderTasks() {
         const taskDoneButton = document.querySelectorAll('.task-done-button');
         taskDoneButton.forEach(button => {
             button.addEventListener('click', () => {
-                /* const taskName = button.parentElement.parentElement
-                                    .querySelector('.task-name');
-                taskName.style.textDecoration = 'line-through'; */
                 const buttonId = button.dataset.id;
                 
                 tasks.forEach(task => {
@@ -61,7 +58,7 @@ export function renderTasks() {
                 });
 
                 localStorage.setItem('tasks', JSON.stringify(tasks));
-                renderTasks();
+                handleSelectedLi();
                 displayTasksNumber();
             });
         });
@@ -74,7 +71,7 @@ export function renderTasks() {
             button.addEventListener('click', (value, index) => {
                 tasks.splice(index, 1);
                 localStorage.setItem('tasks', JSON.stringify(tasks));
-                renderTasks();
+                handleSelectedLi();
                 displayTasksNumber();
             });
         });
