@@ -33,7 +33,7 @@ function handleNewTask() {
             });
 
             localStorage.setItem('tasks', JSON.stringify(tasks));
-            renderTasks();
+            renderTasks(tasks);
             displayTasksNumber();
 
             taskNameInput.value = '';
@@ -45,12 +45,20 @@ function handleNewTask() {
 
 function handleSelectedLi() {
     const lis = document.querySelectorAll('ul.navigation li');
+
+    let status = localStorage.getItem('status') ||'all';
+    lis.forEach(li => {
+        if (li.dataset.status === status) li.classList.add('selected');
+    });
+
     lis.forEach(li => {
         li.addEventListener('click', () => {
             lis.forEach(item => {
                 item.classList.remove('selected');
             });
             li.classList.add('selected');
+            status = li.dataset.status;
+            localStorage.setItem('status', status);
         });
     })
 }
