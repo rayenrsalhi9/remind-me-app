@@ -33,7 +33,7 @@ function handleNewTask() {
             });
 
             localStorage.setItem('tasks', JSON.stringify(tasks));
-            renderTasks(tasks);
+            renderTasks();
             displayTasksNumber();
 
             taskNameInput.value = '';
