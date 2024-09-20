@@ -124,16 +124,12 @@ form a {
 .tasks-area .task {
     background: var(--light-color);
     padding: 10px 20px;
+
     border: 1px solid var(--secondary-color);
     border-radius: 6px;
     box-shadow: 2px 2px 6px var(--secondary-color);
-    transition: .5s;
-
+    
     height: fit-content;
-}
-
-.tasks-area .task:hover {
-    box-shadow: 2px 2px 15px var(--secondary-color);
 }
 
 .tasks-area .task .top-section {

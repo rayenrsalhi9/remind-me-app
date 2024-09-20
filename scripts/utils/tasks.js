@@ -3,6 +3,7 @@ export let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 export function renderTasks() {
 
     renderTasksGrid();
+    checkDoneTasks();
     handleDone();
     handleRemove();
     
@@ -15,7 +16,7 @@ export function renderTasks() {
                 <div class="task">
                     <div class="top-section">
                         <div class="task-info">
-                            <div class="task-name">
+                            <div class="task-name" data-id="${task.id}">
                                 ${task.name}
                                 <div class="line-through"></div>
                             </div>
@@ -25,7 +26,7 @@ export function renderTasks() {
                             </div>
                         </div>
                         <div class="task-buttons">
-                            <button class="task-done-button">
+                            <button class="task-done-button" data-id="${task.id}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="#fca311" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" style="fill: rgb(0, 128, 0);"></path></svg>
                             </button>
                             <button class="remove-task-button">
@@ -48,9 +49,18 @@ export function renderTasks() {
         const taskDoneButton = document.querySelectorAll('.task-done-button');
         taskDoneButton.forEach(button => {
             button.addEventListener('click', () => {
-                const taskName = button.parentElement.parentElement
+                /* const taskName = button.parentElement.parentElement
                                     .querySelector('.task-name');
-                taskName.style.textDecoration = 'line-through';
+                taskName.style.textDecoration = 'line-through'; */
+                const buttonId = button.dataset.id;
+                
+                tasks.forEach(task => {
+                    if (task.id === buttonId) task.done = true;
+                });
+
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+                renderTasks();
+                
             });
         });
         
@@ -65,5 +75,21 @@ export function renderTasks() {
                 renderTasks();
             });
         });
+    }
+
+    function checkDoneTasks() {
+        const taskNames = document.querySelectorAll('.task-name');
+        taskNames.forEach(taskName => {
+            const taskNameId = taskName.dataset.id;
+            tasks.forEach(task => {
+                if (task.id === taskNameId) {
+                    if (task.done === false) {
+                        taskName.style.textDecoration = 'none';
+                    } else {
+                        taskName.style.textDecoration = 'line-through';
+                    }
+                }
+            })
+        })
     }
 }

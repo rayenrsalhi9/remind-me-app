@@ -1,5 +1,6 @@
 import { handleDarkMode } from '../utils/darkMode.js';
 import { tasks, renderTasks } from '../utils/tasks.js';
+import { randomId } from '../utils/randomId.js';
 
 renderTasks();
 handleDarkMode();
@@ -24,15 +25,17 @@ function handleNewTask() {
             tasks.push({
                 name: taskNameInput.value,
                 description: taskDescriptionInput.value,
+                id: randomId(),
+                done: false,
                 deadline: dayjs(taskDateInput.value).format('MMMM DD, YYYY')
             });
 
             localStorage.setItem('tasks', JSON.stringify(tasks));
             renderTasks();
 
-            taskNameInput.value === '';
-            taskDescriptionInput.value === '';
-            taskDateInput.value === '';
+            taskNameInput.value = '';
+            taskDescriptionInput.value = '';
+            taskDateInput.value = '';
         }
     });
 }
