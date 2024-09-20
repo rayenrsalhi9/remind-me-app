@@ -1,0 +1,124 @@
+:root {
+    --dark-color: #111111;
+    --light-color: #faf5e9;
+
+    --secondary-color: #fca311;
+}
+
+.body {
+    margin-top: 100px;
+}
+
+h2.title {
+    color: var(--dark-color);
+}
+
+.note-input-container,
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.note-input-container {
+    max-width: 550px;
+
+    border: 2px solid var(--dark-color);
+    border-radius: 8px;
+
+    padding: 18px 20px;
+    margin: 40px auto;
+
+    background: var(--light-color);
+    color: var(--dark-color);
+
+    box-shadow: 3px 1px 5px #151515;
+}
+
+#note-type {
+    border: 1px solid var(--dark-color);
+    border-radius: 4px;
+}
+
+#note-content {
+    width: 100%;
+    height: 100px;
+
+    resize: none;
+    box-sizing: border-box;
+    padding: 5px 10px;
+
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+
+    background: #fefefe;
+    color: var(--dark-color);
+
+    border: 1px solid var(--dark-color);
+    border-radius: 4px;
+}
+
+.note-input-container button {
+    width: 100%;
+    height: 30px;
+
+    cursor: pointer;
+
+    background: var(--secondary-color);
+    color: var(--dark-color);
+    font-weight: 600;
+
+    border: 1px solid var(--dark-color);
+    border-radius: 4px;
+}
+
+.note-input-container button:hover {
+    background: #f79800;
+    color: var(--light-color);
+}
+
+ul.navigation {
+
+    list-style: none;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    box-sizing: border-box;
+    width: fit-content;
+
+    padding: 5px 10px;
+    margin: 0 auto;
+
+}
+
+ul.navigation li {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    background: #c6c6c6;
+    color: #111111;
+
+    border-radius: 50px;
+    border: 1px solid var(--dark-color);
+
+    box-sizing: border-box;
+    padding: 4px 8px;
+
+    cursor: pointer;
+
+}
+
+ul.navigation li:hover {
+    background: #a8a8a8;
+}
+
+ul.navigation li.selected {
+    background: var(--secondary-color);
+    transform: scale(1.02);
+}
