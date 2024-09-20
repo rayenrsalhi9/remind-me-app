@@ -1,3 +1,5 @@
+import { displayTasksNumber } from "../pages/to-do.js";
+
 export let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 export function renderTasks() {
@@ -60,7 +62,7 @@ export function renderTasks() {
 
                 localStorage.setItem('tasks', JSON.stringify(tasks));
                 renderTasks();
-                
+                displayTasksNumber();
             });
         });
         
@@ -73,6 +75,7 @@ export function renderTasks() {
                 tasks.splice(index, 1);
                 localStorage.setItem('tasks', JSON.stringify(tasks));
                 renderTasks();
+                displayTasksNumber();
             });
         });
     }

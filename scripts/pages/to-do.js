@@ -3,9 +3,11 @@ import { tasks, renderTasks } from '../utils/tasks.js';
 import { randomId } from '../utils/randomId.js';
 
 renderTasks();
+displayTasksNumber();
 handleDarkMode();
 
 handleNewTask();
+handleSelectedLi();
 
 
 function handleNewTask() {
@@ -32,10 +34,42 @@ function handleNewTask() {
 
             localStorage.setItem('tasks', JSON.stringify(tasks));
             renderTasks();
+            displayTasksNumber();
 
             taskNameInput.value = '';
             taskDescriptionInput.value = '';
             taskDateInput.value = '';
         }
     });
+}
+
+function handleSelectedLi() {
+    const lis = document.querySelectorAll('ul.navigation li');
+    lis.forEach(li => {
+        li.addEventListener('click', () => {
+            lis.forEach(item => {
+                item.classList.remove('selected');
+            });
+            li.classList.add('selected');
+        });
+    })
+}
+
+export function displayTasksNumber() {
+
+    const allTasks = document.querySelector('.all span');
+    const pendingTasks = document.querySelector('.pending span');
+    const doneTasks = document.querySelector('.done span');
+
+    let all = tasks.length;
+    let pending = 0;
+    let done = 0;
+    tasks.forEach(task => {
+        if (task.done === false) pending++;
+        else done++;
+    });
+
+    allTasks.innerText = `(${all})`;
+    pendingTasks.innerText = `(${pending})`;
+    doneTasks.innerText = `(${done})`;
 }
