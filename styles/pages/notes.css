@@ -122,3 +122,69 @@ ul.navigation li.selected {
     background: var(--secondary-color);
     transform: scale(1.02);
 }
+
+
+.notes-grid {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+
+    margin-top: 50px;
+}
+
+.notes-grid .note-container {
+
+    background: var(--light-color);
+    color: #111111;
+
+    border: 2px solid var(--dark-color);
+    border-radius: 14px;
+
+    padding: 4px 12px;
+    height: fit-content;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.note-container .note-body {
+
+    background: var(--light-color);
+    color: var(--dark-color);
+    font-weight: 600;
+
+    border-radius: 10px;
+    border: 1px solid var(--dark-color);
+
+    padding: 4px 8px;
+    min-height: 50px;
+    
+}
+
+.note-added-date {
+    color: #111111;
+}
+
+.note-container .remove-button {
+    background: var(--secondary-color);
+    padding: 4px;
+
+    border-radius: 50%;
+    border: 2px solid var(--dark-color);
+
+    position: absolute;
+    right: -15px;
+    bottom: -20px;
+
+    cursor: pointer;
+    transition: .5s;
+}
+
+.note-container .remove-button:hover {
+    transform: rotate(15deg);
+}

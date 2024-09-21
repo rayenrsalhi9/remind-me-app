@@ -1,14 +1,16 @@
 import { handleDarkMode } from '../utils/darkMode.js';
-import { notes, classifyNotes } from '../utils/notesBase.js';
+import { notes, classifyNotes, renderNotes, important, education, business, finance, entertainment } from '../utils/notesBase.js';
 import { randomId } from '../utils/randomId.js';
 
 handleDarkMode();
 handleSelectedNavigation();
-handleNewNote();
 
 function handleSelectedNavigation() {
 
     let selectedType = localStorage.getItem('type') || 'general';
+
+    handleNewNote(selectedType);
+    renderNoteType(selectedType);
 
     const navigationLis = document.querySelectorAll('ul.navigation li');
     navigationLis.forEach(li => {
@@ -23,11 +25,12 @@ function handleSelectedNavigation() {
             li.classList.add('selected');
             selectedType = li.dataset.type;
             localStorage.setItem('type', selectedType);
+            renderNoteType(selectedType);
         });
     });
 }
 
-function handleNewNote() {
+function handleNewNote(selectedType) {
 
     const taskContent = document.querySelector('#note-content');
     const taskType = document.querySelector('#note-type');
@@ -48,7 +51,32 @@ function handleNewNote() {
             taskContent.value = '';
             taskType.value = 'general';
 
-            classifyNotes();
+            renderNoteType(selectedType);
         }
     });
+}
+
+function renderNoteType(selectedType) {
+
+    classifyNotes();
+
+    switch (selectedType) {
+        case 'important' :
+            renderNotes(important, '#d62828');
+            break;
+        case 'education' :
+            renderNotes(education, '#8ecae6');
+            break;
+        case 'business' :
+            renderNotes(business, '#8d99ae');
+            break;
+        case 'finance' :
+            renderNotes(finance, '#a1c181');
+            break;
+        case 'entertainment' :
+            renderNotes(entertainment, '#fcbf49');
+            break;
+        default:
+            renderNotes(notes, '#9a8c98');
+    }
 }
