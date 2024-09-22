@@ -3,7 +3,7 @@ export let darkModeOn = JSON.parse(localStorage.getItem('darkMode')) || false;
 export function handleDarkMode() {
     
     const iconContainer = document.querySelector('.dark-mode-container');
-    const icon = document.querySelector('svg.icon');
+    const icon = document.querySelector('.icon');
 
     initializeAppearance();
 

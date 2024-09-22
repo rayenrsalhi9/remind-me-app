@@ -120,11 +120,11 @@ a {
     transition: 1s;
 }
 
-.right-section .dark-mode-container svg {
+.right-section .dark-mode-container .icon {
     color: #111111;
     background: var(--light-color);
 
-    padding: 5px;
+    padding: 2px 4px;
     border-radius: 50%;
 
     position: absolute;
@@ -139,7 +139,7 @@ a {
     background: var(--logo-right-side);
 }
 
-.dark-mode-container svg.clicked {
+.dark-mode-container .icon.clicked {
     color: var(--logo-right-side);
     transform: translateX(45px) rotate(360deg);
 }
