@@ -54,3 +54,20 @@ export function classifyNotes() {
         }
     });
 }
+
+export function handleRemove(renderNoteType, selectedType) {
+    const removeButtons = document.querySelectorAll('.remove-button');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', (value, index) => {
+            let newNotes = [];
+            notes.forEach(note => {
+                if (note.id !== button.dataset.id) {
+                    newNotes.push(note);  
+                }
+            });
+            notes = newNotes;
+            localStorage.setItem('notes', JSON.stringify(newNotes));
+            renderNoteType(selectedType);
+        });
+    });
+}

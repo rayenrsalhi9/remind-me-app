@@ -1,17 +1,17 @@
 import { handleDarkMode } from '../utils/darkMode.js';
-import { notes, classifyNotes, renderNotes, important, education, business, finance, entertainment } from '../utils/notesBase.js';
+import { notes, classifyNotes, renderNotes, important, education, business, finance, entertainment, handleRemove } from '../utils/notesBase.js';
 import { randomId } from '../utils/randomId.js';
+
+let selectedType = localStorage.getItem('type') || 'general';
 
 handleDarkMode();
 handleSelectedNavigation();
 
 function handleSelectedNavigation() {
 
-    let selectedType = localStorage.getItem('type') || 'general';
-
     renderNoteType(selectedType);
     handleNewNote();
-    handleRemove();
+    handleRemove(renderNoteType, selectedType);
 
     const navigationLis = document.querySelectorAll('ul.navigation li');
     navigationLis.forEach(li => {
@@ -26,7 +26,7 @@ function handleSelectedNavigation() {
             li.classList.add('selected');
             selectedType = li.dataset.type;
             localStorage.setItem('type', selectedType);
-            renderNoteType(selectedType);
+            handleSelectedNavigation();
         });
     });
 }
@@ -82,9 +82,3 @@ function renderNoteType(selectedType) {
     }
 }
 
-function handleRemove() {
-    const removeButtons = document.querySelectorAll('.remove-button');
-    removeButtons.forEach(button => {
-        
-    })
-}
