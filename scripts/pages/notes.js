@@ -9,8 +9,9 @@ function handleSelectedNavigation() {
 
     let selectedType = localStorage.getItem('type') || 'general';
 
-    handleNewNote(selectedType);
     renderNoteType(selectedType);
+    handleNewNote();
+    handleRemove();
 
     const navigationLis = document.querySelectorAll('ul.navigation li');
     navigationLis.forEach(li => {
@@ -30,7 +31,7 @@ function handleSelectedNavigation() {
     });
 }
 
-function handleNewNote(selectedType) {
+function handleNewNote() {
 
     const taskContent = document.querySelector('#note-content');
     const taskType = document.querySelector('#note-type');
@@ -51,7 +52,7 @@ function handleNewNote(selectedType) {
             taskContent.value = '';
             taskType.value = 'general';
 
-            renderNoteType(selectedType);
+            handleSelectedNavigation();
         }
     });
 }
@@ -79,4 +80,11 @@ function renderNoteType(selectedType) {
         default:
             renderNotes(notes, '#9a8c98');
     }
+}
+
+function handleRemove() {
+    const removeButtons = document.querySelectorAll('.remove-button');
+    removeButtons.forEach(button => {
+        
+    })
 }
