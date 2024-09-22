@@ -55,10 +55,10 @@ export function classifyNotes() {
     });
 }
 
-export function handleRemove(renderNoteType, selectedType) {
+export function handleRemove(handleSelectedNavigation) {
     const removeButtons = document.querySelectorAll('.remove-button');
     removeButtons.forEach(button => {
-        button.addEventListener('click', (value, index) => {
+        button.addEventListener('click', () => {
             let newNotes = [];
             notes.forEach(note => {
                 if (note.id !== button.dataset.id) {
@@ -67,7 +67,7 @@ export function handleRemove(renderNoteType, selectedType) {
             });
             notes = newNotes;
             localStorage.setItem('notes', JSON.stringify(newNotes));
-            renderNoteType(selectedType);
+            handleSelectedNavigation();
         });
     });
 }

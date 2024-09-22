@@ -11,7 +11,7 @@ function handleSelectedNavigation() {
 
     renderNoteType(selectedType);
     handleNewNote();
-    handleRemove(renderNoteType, selectedType);
+    handleRemove(handleSelectedNavigation);
 
     const navigationLis = document.querySelectorAll('ul.navigation li');
     navigationLis.forEach(li => {

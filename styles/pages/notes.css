@@ -172,14 +172,14 @@ ul.navigation li.selected {
 
 .note-container .remove-button {
     background: var(--secondary-color);
-    padding: 4px;
+    padding: 2x;
 
     border-radius: 50%;
     border: 2px solid var(--dark-color);
 
     position: absolute;
-    right: -15px;
-    bottom: -20px;
+    right: -6px;
+    bottom: -10px;
 
     cursor: pointer;
     transition: .5s;
