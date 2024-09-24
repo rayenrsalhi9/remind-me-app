@@ -44,7 +44,8 @@ function handleNewNote() {
             notes.push({
                 id: randomId(),
                 content: taskContent.value,
-                type: taskType.value
+                type: taskType.value,
+                date: dayjs().format('MMMM DD, YYYY | HH:mm')
             });
 
             localStorage.setItem('notes', JSON.stringify(notes));

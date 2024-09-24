@@ -124,15 +124,23 @@ a {
     color: #111111;
     background: var(--light-color);
 
-    padding: 2px 4px;
+    padding: 0;
     border-radius: 50%;
 
     position: absolute;
     left: -10px;
     top: -10px;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     transition: .5s;
     cursor: pointer;
+}
+
+.right-section .dark-mode-container .icon svg {
+    padding: 4px;
 }
 
 .dark-mode-container.clicked {
