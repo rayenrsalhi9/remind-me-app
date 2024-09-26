@@ -2,8 +2,9 @@ import { cart, generateCartFunction} from '../../../scripts/utils/cart.js';
 
 describe('test suite: cart', () => {
 
-    it('displays cart on page', () => {
+    const testContainer = document.querySelector('.test-container');
 
+    beforeEach(() => {
         spyOn(localStorage, 'setItem');
 
         spyOn(localStorage, 'getItem').and.callFake(() => {
@@ -14,12 +15,19 @@ describe('test suite: cart', () => {
             });  
         });
 
-        const testContainer = document.querySelector('.test-container');
         testContainer.innerHTML = `
             <div class="cart-area"></div>
         `;
 
         generateCartFunction(10000);
+
+    });
+
+    afterEach(() => {
+        testContainer.innerHTML = '';
+    });
+
+    it('displays cart on page', () => {
 
         expect(
             cart.length
@@ -36,6 +44,30 @@ describe('test suite: cart', () => {
             querySelector('.product').
             querySelector('.name').innerText
         ).toEqual('7artin 3dham');
+
+        expect(
+            localStorage.setItem
+        ).toHaveBeenCalledTimes(0);
+        
+    });
+
+    it ('deletes item from cart and page', () => {
+
+        const deleteButton = document.querySelector('.remove-item');
+
+        deleteButton.click();
+
+        expect(
+            cart.length
+        ).toEqual(0);
+
+        expect(
+            localStorage.setItem
+        ).toHaveBeenCalledTimes(1);
+
+        expect(
+            localStorage.setItem
+        ).toHaveBeenCalledWith('cart', JSON.stringify([]));
     });
 
 });
