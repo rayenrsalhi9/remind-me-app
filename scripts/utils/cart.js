@@ -36,7 +36,7 @@ export function generateCartFunction(budget) {
 
         cartHtml += `
             <div class="initial-budget-cart">
-                <p class="name">Iinitial budget : </p>
+                <p class="name">Initial budget : </p>
                 <p class="price">${dinarFormat(budget)}</p>
             </div>
 
