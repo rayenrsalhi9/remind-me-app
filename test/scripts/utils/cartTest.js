@@ -1,4 +1,4 @@
-import { cart, generateCartFunction} from '../../../scripts/utils/cart.js';
+import { generateCartFunction, loadFromStorage, getCart, setCart, cart } from '../../../scripts/utils/cart.js';
 
 describe('test suite: cart', () => {
 
@@ -16,9 +16,29 @@ describe('test suite: cart', () => {
         });
 
         testContainer.innerHTML = `
+            <div class="initial-budget-input">
+                <label for="initial-budget">
+                    Initial budget :
+                    <input type="text" placeholder="Initial budget to start with (in millims)" id="initial-budget" maxlength="20">
+                </label>
+                <a href="#" class="confirm-budget-button">Confirm budget</a>
+            </div>
+            <div class="add-product-input">
+                <label for="product-name">
+                    Purchased product name:
+                    <input type="text" id="product-name" placeholder="Purchased product name" maxlength="40">
+                </label>
+                <label for="product-price">
+                    Purchased product price :
+                    <input type="text" id="product-price" placeholder="Price will be in your current currency (in millims)" maxlength="20">
+                </label>
+                <a href="#" class="add-product-button">Add product</a>
+            </div>
             <div class="cart-area"></div>
         `;
 
+        setCart(loadFromStorage());
+        console.log(getCart());
         generateCartFunction(10000);
 
     });

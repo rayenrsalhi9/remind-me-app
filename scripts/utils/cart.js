@@ -2,10 +2,13 @@ import { dinarFormat } from "../utils/dinarFormat.js";
 import { history, saveHistory } from "./history.js";
 import { randomId } from "./randomId.js";
 
-export let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let cart = loadFromStorage();
 
 export function generateCartFunction(budget) {
+    
     renderCart(budget, renderCartProducts);
+
+    handleAddProduct();
 
     function renderCartProducts() {
         let productsHtml = '';
@@ -73,7 +76,7 @@ export function generateCartFunction(budget) {
         });
         cart = newCart;
         localStorage.setItem('cart', JSON.stringify(cart));
-    };
+    }
 
     function handleDeleteProduct() {
         const removeButtons = document.querySelectorAll('.remove-item');
@@ -101,10 +104,11 @@ export function generateCartFunction(budget) {
         resetButton.addEventListener('click', () => {
 
             cart = [];
-            budget = 0;
+            budget = 0; 
             
-            localStorage.removeItem('budget');
-            localStorage.removeItem('cart');
+            localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('budget', JSON.stringify(budget));
+
             generateCartFunction(budget);
         });
     }
@@ -129,11 +133,45 @@ export function generateCartFunction(budget) {
     
                 cart = [];
                 budget = 0; 
-                localStorage.removeItem('budget');
-                localStorage.removeItem('cart');
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                localStorage.setItem('budget', JSON.stringify(budget));
                 
                 generateCartFunction(budget);
             }
         });
     }
+
+    function handleAddProduct() {
+
+        const productNameInput = document.querySelector('#product-name');   
+        const productPriceInput = document.querySelector('#product-price'); 
+    
+        const addProductButton = document.querySelector('.add-product-button');
+        addProductButton.addEventListener('click', (e) => {
+            if (productNameInput.value === '' || 
+                productPriceInput.value === '' || 
+                isNaN(productPriceInput.value)) {
+    
+                e.preventDefault();
+    
+            } else {
+                cart.push({
+                    name: `${productNameInput.value}`,
+                    price: `${productPriceInput.value}`,
+                    id: `${randomId()}`
+                });
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                generateCartFunction(budget);
+    
+                productNameInput.value = '';
+                productPriceInput.value = '';
+            }
+        })
+    }
 }   
+
+export function loadFromStorage() {
+    return JSON.parse(localStorage.getItem('cart')) || [];
+}
