@@ -108,7 +108,7 @@ form a:hover {
     gap: 5px;
 }
 
-.product, 
+
 .initial-budget-cart, 
 .total,
 .remaining-budget {
@@ -126,8 +126,35 @@ form a:hover {
     box-sizing: border-box;
 }
 
+.product {
+    width: 100%;
+
+    background: #c7c7c7;
+    border-radius: 4px;
+
+    display: flex;
+    flex-direction: column;
+
+    
+    padding: 4px 12px;
+    box-sizing: border-box;
+}
+
+.product .id {
+    font-size: 14px;
+    font-weight: 600;
+    color: #202020;
+}
+.product .info {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .name {
     width: 200px;
+    font-size: 18px;
 }
 
 @media(max-width: 391px) {
