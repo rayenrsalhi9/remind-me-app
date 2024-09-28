@@ -1,4 +1,3 @@
-import { randomId } from '../utils/randomId.js'; 
 import { dinarFormat } from './dinarFormat.js';
 
 class Cart {
@@ -90,6 +89,25 @@ class Cart {
 
     clearField(field) {
         field.value = '';
+    }
+
+    findMatch(button) {
+        let match;
+        this.products.forEach(product => {
+            if (button.dataset.id === product.id) {
+                match = product;
+            }
+        });
+        return match;
+    }
+
+    removeMatch(matchingItem) {
+        let newProducts = [];
+        this.products.forEach(product => {
+            if (product !== matchingItem) newProducts.push(product);
+        });
+        this.products = newProducts;
+        this.saveToStorage();
     }
 }
 
