@@ -103,7 +103,14 @@ function handleArchive() {
         if (cart.products.length === 0 || budget === 0) e.preventDefault();
         else {
 
-            history.push(cart.products);
+            history.push({
+                purchaseId: randomId(),
+                purchaseDate: dayjs().format('MMMM DD, YYYY | HH:mm'),
+                budget,
+                total: cart.getTotal(),
+                remaining: cart.getRemaining(budget, cart.getTotal()),
+                products: cart.products
+            });
             saveHistory();
     
             cart.products = [];

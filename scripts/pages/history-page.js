@@ -2,8 +2,8 @@ import { handleDarkMode } from "../utils/darkMode.js";
 import { history } from "../utils/history.js";
 import { dinarFormat } from '../utils/dinarFormat.js';
 
-renderHistory();
 handleDarkMode();
+renderHistory();
 
 function renderHistory() {
 
@@ -26,7 +26,7 @@ function renderHistory() {
 
                 <div class="purchase-container-footer">
                     <p> <b>Total price: </b> ${dinarFormat(item.total)} </p>
-                    <p> <b>Remaining budget: </b> ${dinarFormat(item.remainingBudget)} </p>
+                    <p> <b>Remaining budget: </b> ${dinarFormat(item.remaining)} </p>
                 </div>
             </div>
         `;
