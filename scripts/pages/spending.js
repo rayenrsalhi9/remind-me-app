@@ -78,6 +78,8 @@ function handleRemoveProduct() {
             cart.removeMatch(matchingItem);
             cart.render(budget);
             handleRemoveProduct();
+            handleReset();
+            handleArchive();
         })
     })
 }
@@ -93,6 +95,9 @@ function handleReset() {
         saveBudgetToStorage();
 
         cart.render(budget);
+        handleRemoveProduct();
+        handleReset();
+        handleArchive();
     });
 }
 
